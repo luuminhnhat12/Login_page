@@ -22,20 +22,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Khởi tạo ViewModel đúng cách
+
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         binding.loginButton.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         val textUsername = binding.username.text.toString()
-        val textPassword = binding.password.text.toString()  // Tên biến binding.password viết thường chữ cái đầu
-
-        val result = userViewModel.userViewModelCheck(textUsername, textPassword)  // Gọi hàm trực tiếp, không cần dấu gạch dưới
-        print(User(textUsername,textPassword ).isValidPass())
-        print(User(textUsername,textPassword ).isValidEmail())
-        print(User(textUsername,textPassword ).getGmail().equals("nguoidep433@gmail.com"))
-        println(User(textUsername,textPassword ).getPassword().equals("1234"))
+        val textPassword = binding.password.text.toString()
+        val result = userViewModel.userViewModelCheck(textUsername, textPassword)
         if (result) {
             Toast.makeText(v.context, "Login Successful!", Toast.LENGTH_LONG).show()
         } else {
