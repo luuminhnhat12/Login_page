@@ -38,12 +38,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             // Cập nhật trạng thái người dùng
             userViewModel.updateState(User(textUsername, textPassword))
 
-            // Quan sát stateUser sau khi cập nhật
+//            // Quan sát stateUser sau khi cập nhật
             userViewModel.stateUser.observe(this, Observer { newuser ->
                 // Kiểm tra và hiển thị Toast dựa trên trạng thái
                 val message = if (newuser.getGmail().isNotEmpty()) "Updated state" else "Failed"
                 Toast.makeText(v.context, message, Toast.LENGTH_LONG).show()
+//                val intent = intent
+//                finish()
+//                startActivity(intent)
+
             })
+            // Quan sát stateUser sau khi cập nhật
+//            userViewModel.stateUser.observe(viewLifecycleOwner, Observer { user ->
+//                val message = if (user.getGmail().isNotEmpty()) "1" else "0"
+//                Toast.makeText(v.context, message, Toast.LENGTH_LONG).show()
+//
+//                // Làm mới Fragment
+//                if (user.getGmail().isNotEmpty()) {
+//                    val fragmentManager = parentFragmentManager
+//                    val fragmentTransaction = fragmentManager.beginTransaction()
+//                    fragmentTransaction.detach(this).attach(this).commit()
+//                }
+//            })
         }else {
             Toast.makeText(v.context, "Login Failed", Toast.LENGTH_LONG).show()
         }
